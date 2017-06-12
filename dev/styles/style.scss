@@ -1,0 +1,36 @@
+@import 'partials/setup';
+@import 'partials/variables';
+@import 'partials/typography';
+@import 'partials/login';
+@import 'partials/formelements';
+
+
+html{
+	font-size: 62.5%
+}
+
+body{
+	background: $backgroundColor;
+	font-family: $bodyFont;
+}
+
+h1, h2, h3, h4{
+	font-family: $titleFont;
+}
+
+h1{
+	font-size: 10rem;
+	text-shadow: 10px 12px 1px $secondaryColor;
+}
+
+ul{
+	list-style: none;
+}
+
+.headerMenu{
+	display: flex;
+	flex-direction:row;
+	justify-content:space-around;
+	padding: 0;
+
+}
