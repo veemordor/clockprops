@@ -8,6 +8,7 @@ class PickFilm extends React.Component {
 		this.state = {
 			filmChoice: films[0].url,
 			filmTitle: films[0].title,
+			showVideo: false,
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,7 +17,7 @@ class PickFilm extends React.Component {
 		e.preventDefault();
 		this.setState({
 			filmTitle: e.target.value,
-			filmChoice: filmUrls[e.target.value]
+			filmChoice: filmUrls[e.target.value],
 		});
 		console.log(e.target.value)
 	}

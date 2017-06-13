@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import films from './config.js';
 import PickFilm from './pickfilm.js';
 import Videogame from './videogame.js';
+import Instructions from './instructions.js';
 
 //initialize Firebase
 var config = {
@@ -55,48 +56,6 @@ const userRef = firebase.database().ref('/');
 	// v.2 "Clock Out" | "🏠" | "List"
 	// v.3 "Clock Out" | "🏠" | "Video"
 
-
-class UserPropList extends React.Component {
-	constructor(){
-		super();
-	}
-	removeFilmItems(key) {
-		const userId = firebase.auth().currentUser.uid;
-		const itemRef = firebase.database().ref(`${userId}/${key}`)
-		itemRef.remove();
-	}
-	render() {
-		return (
-			// const showUniqueList = () => {
-			// 	if (films.id === 1) {
-
-			// 	} else {
-
-			// 	}
-			// }
-			<main>
-				<section className="userList">
-					<h2>Clocked Props</h2>
-					<div>
-						{this.props.filmItemList.map((film) => {
-							return (
-								<div>
-								<h3>{film.key}</h3>
-								{film.descriptions.map((item, i) => {
-									return (
-										<ul>
-											<li key={i}>{item}</li>
-										</ul>
-									)})}
-								</div>)
-							})}
-					</div>
-				</section>
-			</main>
-		)
-	}
-}
-
 class Header extends React.Component {
 	constructor() {
 		super();
@@ -104,38 +63,60 @@ class Header extends React.Component {
 			loggedIn: false,
 			user: null,
 			listFilmItems: [],
+			filmChoice: '',
+			showPicker:false,
 		};
-		this.logout = this.logout.bind(this);
-	}
-	logout() {
-		auth.signOut()
-		.then((result) => {
-			this.setState({
-				user: null,
-				loggedIn: false,
-				listFilmItems: [],
-				filmChoice: '',
-			})
-			console.log("you are logged out")
-		})
 	}
 	render() {
 		const listButton = () => {
-			if(this.props.showList) {
+			if (this.props.showList && this.state.filmChoice.length === 0) {
+				return <li><button className="disabledButton">See Video</button></li>
+			} else if (this.props.showList) {
 				return <li><button onClick={this.props.revealVideo}>See Video</button></li>
 			}
 			else {
 				return <li><button onClick={this.props.revealList}>See List</button></li>
-			}
+			} 
+			
 		}
 		return (
 			<nav>
 				<ul className="headerMenu">
-					<li><button onClick={this.logout}>Clock Out</button></li>
-					<li><button>Pick Film</button></li>
+					<li><button onClick={this.props.logout}>Clock Out</button></li>
+					<li><button onClick={this.props.revealPicker}>Pick Film</button></li>
 					{listButton()}
 				</ul>
 			</nav>
+		)
+	}
+}
+
+
+class UserPropList extends React.Component {
+	constructor(){
+		super();
+	}
+	render() {
+		return (
+			<div>
+				<section className="userList">
+					<h2>Clocked Props</h2>
+					<div>
+						{this.props.filmItemList.map((film) => {
+							return (
+								<div className="listContainer">
+								<h3>{film.key}</h3>
+								{film.descriptions.map((item, i) => {
+									return (
+										<ul className="propLists">
+											<li key={i}>{item}</li>
+										</ul>
+									)})}
+								</div>)
+							})}
+					</div>
+				</section>
+			</div>
 		)
 	}
 }
@@ -148,12 +129,18 @@ class App extends React.Component {
 			user: null,
 			listFilmItems: [],
 			filmChoice: '',
+			showDescription:true,
+			showPicker: false,
 			showList: false,
+			showVideo:false,
 		};
 		this.login = this.login.bind(this);
+		this.logout = this.logout.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.chooseFilm = this.chooseFilm.bind(this);
 		this.revealList = this.revealList.bind(this);
+		this.revealVideo = this.revealVideo.bind(this);
+		this.revealPicker = this.revealPicker.bind(this);
 		this.revealVideo = this.revealVideo.bind(this);
 	}
 	login() {
@@ -163,8 +150,24 @@ class App extends React.Component {
 			this.setState({
 				user: user,
 				loggedIn: true,
+				showDescription: true,
 			})
 			console.log("you are logged in")
+		})
+	}
+	logout() {
+		auth.signOut()
+		.then((result) => {
+			this.setState({
+				user: null,
+				loggedIn: false,
+				listFilmItems: [],
+				filmChoice: '',
+				showPicker: false,
+				showList: false,
+				showVideo:false,
+			})
+			console.log("you are logged out")
 		})
 	}
 	handleSubmit(title){
@@ -172,24 +175,37 @@ class App extends React.Component {
 			filmTitle: title,
 		})
 	}
-	// revealPickFilm(){
-	// 	this.setState({
-			
-	// 	})
-	// }
+	revealPicker(){
+		this.setState({
+			showPicker:true,
+			showList: false,
+			showVideo:false,
+			showDescription: false,
+		})
+	}
 	revealList() {
 		this.setState({
 			showList: true,
+			showPicker:false,
+			showVideo:false,
+			showDescription: false,
 		});
 	}
 	revealVideo() {
 		this.setState({
+			showVideo:true,
 			showList:false,
-		})
+			showPicker:false,
+			showDescription: false,
+		});
 	}
 	chooseFilm(filmUrl){
 		this.setState({
-			filmChoice: filmUrl
+			filmChoice: filmUrl,
+			showVideo:true,
+			showPicker:false,
+			showList:false,
+			showDescription: false,
 		});
 	}
 	componentDidMount() {
@@ -237,23 +253,29 @@ class App extends React.Component {
 		const showVideoInput = () => {
 			if (this.state.loggedIn === true) {
 				return(
-					<div>
+					<main className="wrapper">
 						<Header 
+						logout={this.logout}
 						revealList={this.revealList} 
 						revealVideo={this.revealVideo} 
+						revealPicker={this.revealPicker}
 						showList={this.state.showList} />
 						{
-							this.state.filmChoice.length > 0 ?
-									null
-								:
+							this.state.showDescription ?
+								<Instructions />
+							:
+								null
+						}
+						{
+							this.state.showPicker ?
 									<PickFilm 
 									handleSubmit={this.handleSubmit}
 									chooseFilm={this.chooseFilm}/>
+								:
+									null
 						}
 						{
-							this.state.filmChoice.length === 0 || this.state.showList  ?
-								null
-							:
+							this.state.showVideo ?
 								<Videogame
 									filmTitle={this.state.filmTitle}
 									filmChoice={this.state.filmChoice}
@@ -261,6 +283,8 @@ class App extends React.Component {
 									submitHandler={this.handleSubmit}
 									submitChange={this.handleChange}
 								/>
+							:
+								null
 						}
 						{
 							this.state.showList ?
@@ -268,13 +292,13 @@ class App extends React.Component {
 							:
 								null
 						}
-					</div>
+					</main>
 				)
 			} else {
 				return(
 					<section className="loginPage">
 						<h1>Clock Props</h1>
-						<button onClick={this.login}>Login</button>
+						<button className="loginButton" onClick={this.login}>Login</button>
 					</section>
 				)
 			}

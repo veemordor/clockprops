@@ -46,7 +46,7 @@ export default class Videogame extends React.Component {
 						<input 
 						name="filmItems" 
 						type="text" 
-						placeholder="What Prop do you see?"
+						placeholder="Type what props you see"
 						onChange={this.handleChange} 
 						value={this.state.filmItems}  />
 					</form>

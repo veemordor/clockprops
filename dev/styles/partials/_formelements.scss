@@ -4,7 +4,7 @@ button{
 	border: 3px solid $mainColor;
 	border-radius: 3px;
 	background: none;
-	background-color:rgba(255,255,255,.6);
+	background-color:$backgroundColor;
 	color: $secondaryColor;
 	font-family: $titleFont;
 	font-size: $buttonSize;
@@ -19,34 +19,53 @@ button{
 	}
 }
 
+.loginButton{
+	display:inline-block;
+	width: 500px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.disabledButton{
+	cursor: not-allowed;
+	background-color: $backgroundColor;
+	color:#ccc;
+	border: 3px solid #aaa;
+	&:hover{
+		text-shadow: none;
+		box-shadow:  none;
+	}
+}
+
 input[type=text]{
 	position: relative;
 	padding: 20px 60px;
 	border: 3px solid $mainColor;
 	border-radius: 3px;
 	background: none;
-	background-color:rgba(255,255,255,.6);
+	background-color:#fff;
 	color: #fff;
-	font-family: $titleFont;
+	font-family: $bodyFont;
 	font-size: $bodySize;
-	transition: all .5s;
+	font-weight: 700;	
+	text-align: center;
+	box-shadow:  2px 2px 10px #aaa;
 	&:focus{
-		background-color: rgba( $mainColor, 1);
-		color: #fff;
-		box-shadow: 5px 5px 5px $secondaryColor;
+		background-color: #fff;
+		color: $secondaryColor;
+		border: 3px solid $mainColor;
 	}
-	&:placeholder {
-	color:#333;
-}
 }
 
 input[type=text]::placeholder{
-	color:#333;
+	color:#ccc;
+	font-size: 1.2rem;
+	font-weight: 400;
+	text-align: center;
 	&:focus{
 		color:#ddd;
 	}
 }
-
 
 textarea,  input {
 	outline: none;
@@ -84,7 +103,7 @@ select{
 	border:none;
 	border-radius:3px;
 	border:3px solid $secondaryColor;
-	background-color:rgba(255,255,255,.6);
+	background-color:$backgroundColor;
 	overflow: hidden;
 	font-family: $bodyFont;
 	font-size: $bodySize;
@@ -102,7 +121,7 @@ input[type=submit]{
 	border: 3px solid $mainColor;
 	border-radius: 3px;
 	background: none;
-	background-color:rgba(255,255,255,.6);
+	background-color:$backgroundColor;
 	color: $secondaryColor;
 	font-family: $titleFont;
 	font-size: $buttonSize;

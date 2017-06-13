@@ -6,17 +6,7 @@ import PickFilm from './pickfilm.js'
 export default class Video extends React.Component {
 	constructor(props) {
 		super(props);
-		this.handlePlay = this.handlePlay.bind(this);
 	}
-
-	handlePlay() {
-		if (this.video.paused) {
-			this.video.play();
-		} else {
-			this.video.pause();
-		}
-	}
-
 	render() {
 		return (
 			<section className="videoPlayer">

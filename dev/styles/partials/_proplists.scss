@@ -1,0 +1,37 @@
+.userList{
+	display: flex;
+	flex-direction:column;
+}
+
+.listContainer{
+	display: flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	margin-bottom: 20px;
+		h3{
+		padding: 20px 30px;
+		font-family: $bodyFont;
+		font-size: $bodySize;
+		text-transform: uppercase;
+		background-color: $backgroundColor;
+		border: 3px solid $secondaryColor;
+		border-radius: 5px;
+		color:$secondaryColor;
+		flex-order:-1;
+	}
+}
+
+.propLists{
+	display: flex;
+	flex-direction:row;
+	li{
+		display: inline-block;
+		padding: 20px 30px;
+		font-size: $bodySize;
+		font-weight: 700;
+		color:$secondaryColor;
+		background-color: $backgroundColor;
+		border: 3px solid $mainColor;
+		border-radius: 5px;
+	}
+}

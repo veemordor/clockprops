@@ -4,6 +4,8 @@
 @import 'partials/login';
 @import 'partials/formelements';
 @import 'partials/video';
+@import 'partials/description';
+@import 'partials/proplists';
 
 
 html{
@@ -12,6 +14,9 @@ html{
 
 body{
 	background: $backgroundColor;
+	background-image: url(../../assets/bg-1280px.png);
+	background-size: cover;
+	background-repeat: repeat-y;
 	font-family: $bodyFont;
 }
 
@@ -31,8 +36,14 @@ ul{
 .headerMenu{
 	display: flex;
 	flex-direction:row;
-	justify-content:space-around;
+	justify-content:space-between;
 	padding: 20px 0;
+}
+
+.wrapper{
+	width: 80%;
+	max-width: 1080px;
+	margin: 0 auto;
 }
 
 
