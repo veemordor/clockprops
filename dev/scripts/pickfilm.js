@@ -18,6 +18,7 @@ class PickFilm extends React.Component {
 			filmTitle: e.target.value,
 			filmChoice: filmUrls[e.target.value]
 		});
+		console.log(e.target.value)
 	}
 
 	handleSubmit(e) {
@@ -34,7 +35,7 @@ class PickFilm extends React.Component {
 							Pick Your Film
 							<select
 								name="filmChoice"
-								value={this.state.filmChoice}
+								value={this.state.filmTite}
 								onChange={this.handleChange}
 							>
 							{films.map(film => {

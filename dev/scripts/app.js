@@ -67,23 +67,30 @@ class UserPropList extends React.Component {
 	}
 	render() {
 		return (
+			// const showUniqueList = () => {
+			// 	if (films.id === 1) {
+
+			// 	} else {
+
+			// 	}
+			// }
 			<main>
 				<section className="userList">
 					<h2>Clocked Props</h2>
-					
+					<div>
 						{this.props.filmItemList.map((film) => {
-							console.log(film);
-							<h3>{film.key}</h3>
 							return (
-								<ul>
-								film.descriptions.map((item, i) => {
-								return (
-									<li key={i}>{item}</li>
-									)
-							})
-							</ul>)
-						})}		
-					
+								<div>
+								<h3>{film.key}</h3>
+								{film.descriptions.map((item, i) => {
+									return (
+										<ul>
+											<li key={i}>{item}</li>
+										</ul>
+									)})}
+								</div>)
+							})}
+					</div>
 				</section>
 			</main>
 		)

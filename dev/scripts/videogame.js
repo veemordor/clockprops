@@ -39,20 +39,19 @@ export default class Videogame extends React.Component {
 	}
 	render() {
 		return (
-			<div>
+			<section className="videoGame">
 				<Video filmChoice={this.props.filmChoice}/>
 				<section className="inputForm">
-					<form onSubmit={this.handleSubmit} >
+					<form onSubmit={this.handleSubmit}>
 						<input 
 						name="filmItems" 
 						type="text" 
 						placeholder="What Prop do you see?"
-						className="rotateOutUpLeft"
 						onChange={this.handleChange} 
 						value={this.state.filmItems}  />
 					</form>
 				</section>
-			</div>
+			</section>
 		)
 	}
 }

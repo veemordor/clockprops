@@ -19,15 +19,16 @@ export default class Video extends React.Component {
 
 	render() {
 		return (
-			<video 
-			onClick={this.handlePlay} 
-			src={this.props.filmChoice} 
-			ref={(c) => this.video = c} 
-			controls="true"
-			preload="auto"
-			loop="true"
-			muted="true"
-			/>
+			<section className="video-player">
+				<video 
+				onClick={this.handlePlay} 
+				src={this.props.filmChoice} 
+				ref={(c) => this.video = c} 
+				controls="true"
+				preload="none"
+				loop="true"
+				muted="true">This video is not supported in your browswer</video>
+			</section>
 		)
 	}
 }

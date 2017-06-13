@@ -1,0 +1,14 @@
+video {  
+   width:100%; 
+   max-width: 640px;
+   height:auto;
+   @media (max-width: 480px){
+		min-width: 460px;
+
+   }
+}
+
+.video-container{
+	max-width: 500px;
+}
+
