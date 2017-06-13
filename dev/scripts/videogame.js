@@ -42,7 +42,7 @@ export default class Videogame extends React.Component {
 			<section className="videoGame">
 				<Video filmChoice={this.props.filmChoice}/>
 				<section className="inputForm">
-					<form onSubmit={this.handleSubmit}>
+					<form onSubmit={this.handleSubmit} >
 						<input 
 						name="filmItems" 
 						type="text" 

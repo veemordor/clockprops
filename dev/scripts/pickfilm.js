@@ -30,22 +30,20 @@ class PickFilm extends React.Component {
 	render(){
 		return(
 			<section className="pickFilm">
-					<form onSubmit={this.handleSubmit}>
-						<label>
-							Pick Your Film
-							<select
-								name="filmChoice"
-								value={this.state.filmTite}
-								onChange={this.handleChange}
-							>
-							{films.map(film => {
-								return <option key={film.title} value={film.title}>{film.title}</option>
-							})}
-								
-								
-							</select>
-							<input type="submit" value="Submit" />
-						</label>
+					<form className="pickList" onSubmit={this.handleSubmit}>
+						<label>Pick Your Film</label>
+						<select
+							name="filmChoice"
+							value={this.state.filmTite}
+							onChange={this.handleChange}
+						>
+						{films.map(film => {
+							return <option key={film.title} value={film.title}>{film.title}</option>
+						})}
+							
+							
+						</select>
+						<input type="submit" value="Submit" />
 					</form>
 				</section>
 		)

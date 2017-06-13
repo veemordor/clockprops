@@ -5,13 +5,13 @@ const films = [
 	},
 	{
 		title: 'Orlando',
-		url: '../../assets/IMG_1138.m4v',
+		url: '../../assets/potter-orlando.mp4',
 	}
 ];
 
 export const filmUrls = {
 	'Imitation of Life': '../../assets/sirk-imitiation.mp4',
-	'Orlando': '../../assets/IMG_1138.m4v'
+	'Orlando': '../../assets/potter-orlando.mp4'
 };
 
 export default films;

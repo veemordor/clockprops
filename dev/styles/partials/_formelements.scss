@@ -1,77 +1,115 @@
 button{
-	position: relative;
 	padding: 12px 24px;
 	border:none;
 	border: 3px solid $mainColor;
+	border-radius: 3px;
 	background: none;
-	background-color:rgba(255,255,255,0.1);
+	background-color:rgba(255,255,255,.6);
 	color: $secondaryColor;
 	font-family: $titleFont;
+	font-size: $buttonSize;
+	text-transform: uppercase;
 	transition: all .5s;
+	&:hover{
+		text-shadow: 2px 2px 1px $mainColor;
+		box-shadow:  5px 5px 5px $secondaryColor;
+	}
+	&:focus{
+		outline: none;
+	}
 }
-
-button:hover{
-	text-shadow: 2px 2px 1px $mainColor;
-	box-shadow:  5px 5px 5px $secondaryColor;
-	// padding: 16px 28px;
-}
-
-button::before{
-	position: absolute;
-	content: "";
-	z-index: 1;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	border: 0px solid $mainColor;
-	transition: all .5s;
-}
-
-// button:hover:before{
-// 	position: absolute;
-// 	content: "";
-// 	z-index: -1;
-// 	top: 5px;
-// 	left: 5px;
-// 	bottom: -10px;
-// 	right: -10px;
-// 	border: 3px solid $secondaryColor;
-// }
 
 input[type=text]{
 	position: relative;
 	padding: 20px 60px;
-	border:none;
-	border: 3px solid rgba( $mainColor, 1);
+	border: 3px solid $mainColor;
+	border-radius: 3px;
 	background: none;
-	background-color: rgba( $mainColor, 0.5);
-	color: $secondaryColor;
+	background-color:rgba(255,255,255,.6);
+	color: #fff;
 	font-family: $titleFont;
+	font-size: $bodySize;
 	transition: all .5s;
+	&:focus{
+		background-color: rgba( $mainColor, 1);
+		color: #fff;
+		box-shadow: 5px 5px 5px $secondaryColor;
+	}
+	&:placeholder {
+	color:#333;
+}
 }
 
 input[type=text]::placeholder{
-	color:$secondaryColor;
+	color:#333;
+	&:focus{
+		color:#ddd;
+	}
 }
 
-input[type=text]:focus{
-	border: #fff;
-	background-color: rgba( $mainColor, 0.7);
-	color: $secondaryColor;
-	border: 3px solid rgba($secondaryColor 0.3);
-}
 
 textarea,  input {
 	outline: none;
 }
 
-textarea{
-	animation: rotateOutUpLeft 1s infinite;
+.pickFilm{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60vh;
+	.pickList{
+		display: flex;
+		flex-direction:column;
+		text-align: center;
+		margin:auto;
+	}
 }
 
+.pickList ~ label, select, input{
+	margin-bottom: 20px;
+}
 
+label{
+	font-family: $titleFont;
+	font-size: $buttonSize;
+	color:$secondaryColor;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
 
-// input[type=text]:hover{
-// 	text-shadow: 2px 2px 1px $mainColor;
-// }
+select{
+	width: 500px;
+	height: 50px;
+	outline:none;
+	border:none;
+	border-radius:3px;
+	border:3px solid $secondaryColor;
+	background-color:rgba(255,255,255,.6);
+	overflow: hidden;
+	font-family: $bodyFont;
+	font-size: $bodySize;
+	text-align: center;
+	text-transform: uppercase;
+	color:$secondaryColor;
+	@media (max-width: 768px){
+		width: 300px;
+   }
+}
+
+input[type=submit]{
+	padding: 12px 24px;
+	border:none;
+	border: 3px solid $mainColor;
+	border-radius: 3px;
+	background: none;
+	background-color:rgba(255,255,255,.6);
+	color: $secondaryColor;
+	font-family: $titleFont;
+	font-size: $buttonSize;
+	text-transform: uppercase;
+	transition: all .5s;
+	&:hover{
+		text-shadow: 2px 2px 1px $mainColor;
+		box-shadow:  5px 5px 5px $secondaryColor;
+	}
+}

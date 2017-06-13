@@ -1,14 +1,23 @@
+.videoGame{
+	display: flex;
+	flex-direction:column;
+	align-items: center;
+	justify-content: center;
+}
+
 video {  
    width:100%; 
    max-width: 640px;
    height:auto;
    @media (max-width: 480px){
 		min-width: 460px;
-
    }
 }
 
-.video-container{
-	max-width: 500px;
+.videoPlayer{
+	max-width: 640px;
+	margin-bottom: 20px;
+	margin-right:20px;
+	margin-left: 20px;
 }
 
