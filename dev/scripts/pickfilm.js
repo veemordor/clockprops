@@ -19,14 +19,11 @@ class PickFilm extends React.Component {
 			filmTitle: e.target.value,
 			filmChoice: filmUrls[e.target.value],
 		});
-		console.log(e.target.value)
 	}
-
 	handleSubmit(e) {
 		e.preventDefault();
 		this.props.chooseFilm(this.state.filmChoice);
 		this.props.handleSubmit(this.state.filmTitle);
-			console.log(this.state.filmTitle);
 	}
 	render(){
 		return(

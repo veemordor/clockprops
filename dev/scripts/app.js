@@ -5,6 +5,16 @@ import PickFilm from './pickfilm.js';
 import Videogame from './videogame.js';
 import Instructions from './instructions.js';
 
+//Sections/Components - Map
+//1. Login (app.js - App Component)
+//2. Home page 
+	//2b. Instructions (instructions.js)
+	//2c. Pick list of films (pickfilm.js)
+//3. Video page (videogame.js)
+	//3b. Video w/ player functions (video.js)
+	//3c. Form with input to Firebase DB 
+//4. List page (app.js - UserPickFilm Component)
+
 //initialize Firebase
 var config = {
     apiKey: "AIzaSyApJIP7dai3tvvHs1nzuSefEaw9K3Sh0BU",
@@ -21,41 +31,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 const userRef = firebase.database().ref('/');
 
-//Sections/Components
-//1. Landing page
-	//1a. Login 
-		//i. set up authentication in firebase
-		//ii. create login button in App
-		//iii. link user auth with login button
-//2. Home page
-	//2a. Header v.1
-	//2b. Instructions
-	//2c. Pick list of films
-//3. Video page
-	//3a. Header v.2
-	//3b. Video w/ player functions
-	//3c. Form with input to Firebase DB - DONE
-//4. List view
-	//4a. Header v.3
-	//4b. List by User [route to film] - DONE
-	//4c. List by Film [route to user]
-
-	//right now every1 only has one list
-	//in fb, the whole app is an object; key that is userid; add film as sepa
-	/*
-		userId {
-			name: 'Garrett'
-			email: 'garrett@garrett.garrett'
-			movieId1: ['pencil', 'eraser', 'twizzler'],
-			movieId2: ['guns']
-		}
-	*/ 
-
 //Header nav w/ 3 different views [Component with Objects]
-	// v.1 "Clock Out"
-	// v.2 "Clock Out" | "🏠" | "List"
-	// v.3 "Clock Out" | "🏠" | "Video"
-
 class Header extends React.Component {
 	constructor() {
 		super();
@@ -77,7 +53,6 @@ class Header extends React.Component {
 			else {
 				return <li><button onClick={this.props.revealList}>See List</button></li>
 			} 
-			
 		}
 		return (
 			<nav>
@@ -90,8 +65,7 @@ class Header extends React.Component {
 		)
 	}
 }
-
-
+//List by User
 class UserPropList extends React.Component {
 	constructor(){
 		super();
@@ -120,7 +94,7 @@ class UserPropList extends React.Component {
 		)
 	}
 }
-
+//Main App
 class App extends React.Component {
 	constructor() {
 		super();
@@ -152,7 +126,6 @@ class App extends React.Component {
 				loggedIn: true,
 				showDescription: true,
 			})
-			console.log("you are logged in")
 		})
 	}
 	logout() {
@@ -167,7 +140,6 @@ class App extends React.Component {
 				showList: false,
 				showVideo:false,
 			})
-			console.log("you are logged out")
 		})
 	}
 	handleSubmit(title){
@@ -225,8 +197,6 @@ class App extends React.Component {
 					const newListFilmItems = [];
 
 					for (let key in dbFilmItems) {
-						console.log('key', key);
-						console.log('film items', dbFilmItems[key]);
 						let descriptions = [];
 						for (let description in dbFilmItems[key]) {
 							descriptions.push(dbFilmItems[key][description])
@@ -235,8 +205,7 @@ class App extends React.Component {
 							key: key,
 							descriptions: descriptions,
 						})
-					}
-					console.log(newListFilmItems)
+					}				
 					this.setState({
 						listFilmItems: newListFilmItems,
 					});
@@ -295,6 +264,7 @@ class App extends React.Component {
 					</main>
 				)
 			} else {
+			{/* Landing page w/ Login */}
 				return(
 					<section className="loginPage">
 						<h1>Clock Props</h1>

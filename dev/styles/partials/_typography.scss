@@ -3,3 +3,7 @@ $bodyFont:'Roboto', sans-serif;
 
 $buttonSize: 1.4rem;
 $bodySize: 1.6rem;
+
+h1, h2, h3, h4{
+	font-family: $titleFont;
+}

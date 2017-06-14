@@ -2,10 +2,11 @@
 @import 'partials/variables';
 @import 'partials/typography';
 @import 'partials/login';
+@import 'partials/header';
 @import 'partials/formelements';
-@import 'partials/video';
 @import 'partials/description';
 @import 'partials/proplists';
+@import 'partials/video';
 
 
 html{
@@ -18,26 +19,20 @@ body{
 	background-size: cover;
 	background-repeat: repeat-y;
 	font-family: $bodyFont;
-}
-
-h1, h2, h3, h4{
-	font-family: $titleFont;
-}
-
-h1{
-	font-size: 10rem;
-	text-shadow: 10px 12px 1px $secondaryColor;
+	@media(max-width: 768px){
+		background-image: url(../../assets/bg-768px.png);
+		background-size: cover;
+		background-repeat: repeat-y;
+	}
+	@media(max-width: 480px){
+		background-image: url(../../assets/bg-480px.png);
+		background-size: cover;
+		background-repeat: repeat-y;
+	}
 }
 
 ul{
 	list-style: none;
-}
-
-.headerMenu{
-	display: flex;
-	flex-direction:row;
-	justify-content:space-between;
-	padding: 20px 0;
 }
 
 .wrapper{

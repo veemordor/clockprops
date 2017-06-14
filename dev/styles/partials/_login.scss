@@ -3,5 +3,17 @@
 	flex-direction:column;
 	color: $mainColor;
 	text-align: center;
+		h1{
+			font-size: 10rem;
+			text-shadow: 10px 12px 1px $secondaryColor;
+			@media (max-width: 768px){
+				font-size: 6rem;
+				text-shadow: 6px 8px 1px $secondaryColor;
+			}
+			@media (max-width: 480px){
+				font-size: 4rem;
+				text-shadow: 4px 6px 1px $secondaryColor;
+			}
+		}
 }
 

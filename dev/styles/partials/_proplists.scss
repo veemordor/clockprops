@@ -1,6 +1,15 @@
 .userList{
 	display: flex;
 	flex-direction:column;
+	h2{
+		font-family: $bodyFont;
+		font-size: $bodySize;
+		font-weight: 700;
+		text-transform: uppercase;
+		color:$secondaryColor;
+		text-align: right;
+		text-decoration: underline;
+	}
 }
 
 .listContainer{
@@ -24,9 +33,9 @@
 .propLists{
 	display: flex;
 	flex-direction:row;
+	align-items: center;
 	li{
-		display: inline-block;
-		padding: 20px 30px;
+		padding: 10px 20px;
 		font-size: $bodySize;
 		font-weight: 700;
 		color:$secondaryColor;

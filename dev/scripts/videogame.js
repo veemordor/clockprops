@@ -17,12 +17,9 @@ export default class Videogame extends React.Component {
 	}
 	handleSubmit(e) {
 		e.preventDefault();
-			// console.log("submitted");
 		const userFilmTitle = this.props.filmTitle;
-			console.log("film title is...", userFilmTitle);
 		// going into user and retrieving the id
 		const userId = this.props.user.uid;
-			console.log("you are user ID #", userId)
 		const userRef = firebase.database().ref(`${userId}/${userFilmTitle}`);
 		// //pushing up to firebase as object
 		userRef.push(this.state.filmItems);
@@ -44,6 +41,7 @@ export default class Videogame extends React.Component {
 				<section className="inputForm">
 					<form onSubmit={this.handleSubmit} >
 						<input 
+						className="animated pulse"
 						name="filmItems" 
 						type="text" 
 						placeholder="Type what props you see"
